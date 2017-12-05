@@ -1,0 +1,105 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jquery": true
+  },
+  "rules": {
+    // enforce spacing inside single-line blocks
+    // http://eslint.org/docs/rules/block-spacing
+    "block-spacing": ["error", "always"],
+    // enforce one true brace style
+    "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
+    // require camel case names
+    "camelcase": ["error", { "properties": "never" }],
+    // enforce spacing before and after comma
+    "comma-spacing": ["error", { "before": false, "after": true }],
+    // enforce one true comma style
+    "comma-style": ["error", "last"],
+    // specify curly brace conventions for all control statements
+    "curly": ["error", "multi-line"],
+    // enforce newline at the end of file, with no multiple empty lines
+    "eol-last": ["error", "always"],
+    // enforce spacing between functions and their invocations
+    "func-call-spacing": ["error", "never"],
+    // requires function names to match the name of the variable or property
+    "func-name-matching": ["off", "always", {
+      "includeCommonJSModuleExports": false
+    }],
+    // enforces use of function declarations or expressions
+    "func-style": ["off", "expression"],
+    "indent": ["error", 2, {
+      "VariableDeclarator": 1,
+      "outerIIFEBody": 1,
+      "FunctionDeclaration": {
+        "parameters": 1,
+        "body": 1
+      },
+      "FunctionExpression": {
+        "parameters": 1,
+        "body": 1
+      }
+    }],
+    // enforces spacing between keys and values in object literal properties
+    "key-spacing": ["error", { "beforeColon": false, "afterColon": true }],
+    // require a space before & after certain keywords
+    "keyword-spacing": ["error", {
+      "before": true,
+      "after": true,
+      "overrides": {
+        "return": { "after": true },
+        "throw": { "after": true },
+        "case": { "after": true }
+      }
+    }],
+    // enforce position of line comments
+    "line-comment-position": ["off", {
+      "position": "above",
+      "ignorePattern": "",
+      "applyDefaultPatterns": true
+    }],
+    // specify the maximum depth that blocks can be nested
+    "max-depth": ["off", 4],
+    // require multiline ternary
+    "multiline-ternary": ["off", "never"],
+    // disallow empty functions, except for standalone funcs/arrows
+    "no-empty-function": ["error", {
+      "allow": [
+        "arrowFunctions",
+        "functions",
+        "methods"
+      ]
+    }],
+    // disallow var and named functions in global scope
+    // http://eslint.org/docs/rules/no-implicit-globals
+    "no-implicit-globals": "off",
+    // disallow comments inline after code
+    "no-inline-comments": "off",
+    // disallow unnecessary nested blocks
+    "no-lone-blocks": "error",
+    // disallow if as the only statement in an else block
+    "no-lonely-if": "error",
+    // disallow mixed spaces and tabs for indentation
+    "no-mixed-spaces-and-tabs": "error",
+    // disallow multiple empty lines and only one newline at the end
+    "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1 }],
+    // disallow space between function identifier and application
+    "no-spaced-func": "error",
+    // disallow tab characters entirely
+    "no-tabs": "error",
+    // disallow use of undeclared variables unless mentioned in a /*global */ block
+    "no-undef": "error",
+    // disallow declaration of variables that are not used in the code
+    "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": true }],
+    // disallow use of variables before they are defined
+    "no-use-before-define": ["error", { "functions": true, "classes": true, "variables": true }],
+    // require a newline around variable declaration
+    "one-var-declaration-per-line": ["error", "always"],
+    // specify whether double or single quotes should be used
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    // require or disallow use of semicolons instead of ASI
+    "semi": ["error", "always"],
+    // require immediate function invocation to be wrapped in parentheses
+    "wrap-iife": ["error", "outside", { "functionPrototypeMethods": false }]
+  }
+}

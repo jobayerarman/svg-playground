@@ -1,0 +1,28 @@
+{
+  "name": "svg-playground",
+  "version": "0.1.0",
+  "description": "svg animation playground",
+  "repository": "https://github.com/jobayerarman/svg-playground.git",
+  "author": "Jobayer Arman <jobayer.arman@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "gulp serve"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-es2017": "^6.24.1",
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
+    "gulp-eslint": "^4.0.0",
+    "gulp-nunjucks-render": "^2.2.1",
+    "gulp-processhtml": "^1.1.0",
+    "gulp-util": "^3.0.8"
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0-beta.2",
+    "jquery": "^1.9.1",
+    "popper.js": "^1.12.9",
+    "svg.js": "^2.6.3"
+  }
+}

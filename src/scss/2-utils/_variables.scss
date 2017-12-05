@@ -1,0 +1,30 @@
+//
+// Variables
+// --------------------------------------------------
+
+
+//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+
+
+
+
+//== Scaffolding
+//
+//## Settings for some of the most global styles.
+
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Cabin", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-family-monospace:  "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$font-family-base:       $font-family-sans-serif;
+
+//** By default, this inherits from the `<body>`.
+$headings-font-family:    "Raleway", "Segoe UI", Trebuchet, Tahoma, Arial, sans-serif;
+$headings-font-weight:    400;
+$headings-line-height:    1.1;
+$headings-color:          inherit;
