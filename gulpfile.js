@@ -36,7 +36,7 @@ var size         = require('gulp-size');
 // Style related
 var style = {
   src: './src/scss/main.scss',
-  dest: './assets/scss/',
+  dest: './dist/css/',
   destFiles: './dist/css/*.+(css|map)'
 };
 // Browsers you care about for autoprefixing.
@@ -104,7 +104,7 @@ gulp.task('clean:all', gulpSequence('clean:css', 'clean:js'));
 var minifyCss = lazypipe()
   .pipe(cleancss, {keepSpecialComments: false});
 
-gulp.task('build:styles', ['clean:css'], function() {
+gulp.task('build:css', ['clean:css'], function() {
   return gulp.src(style.src)
     .pipe(plumber({errorHandler: errorLog}))
     .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
