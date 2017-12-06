@@ -121,3 +121,30 @@ gulp.task('build:css', ['clean:css'], function() {
     .pipe(browserSync.stream())
     .pipe(size({showFiles: true}));
 });
+
+/**
+ * Task: `browser-sync`.
+ */
+gulp.task( 'browser-sync', function() {
+  browserSync.init( {
+
+    // built-in static server for basic HTML/JS/CSS websites
+    server: true,
+
+    // Will not attempt to determine your network status, assumes you're ONLINE
+    online: true,
+
+    // Open the site in Chrome
+    browser: 'chrome.exe',
+
+    // `true` Automatically open the browser with BrowserSync live server.
+    // `false` Stop the browser from automatically opening.
+    open: false,
+
+    // Console log connections
+    logConnections: true,
+
+    // The small pop-over notifications in the browser are not always needed/wanted
+    notify: true,
+  });
+});
