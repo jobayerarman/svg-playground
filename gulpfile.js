@@ -31,6 +31,7 @@ var gulpif       = require('gulp-if');
 var gulpSequence = require('gulp-sequence');
 var lazypipe     = require('lazypipe');
 var plumber      = require('gulp-plumber');
+var replace      = require('gulp-replace');
 var size         = require('gulp-size');
 
 // Style related
@@ -57,6 +58,20 @@ const AUTOPREFIXER_BROWSERS = [
 var script = {
   user: {},
   vendor: {}
+};
+
+// HTML folders and files
+var html = {
+  src: {
+    path      : './src/site/',
+    pages     : './src/site/pages/*.+(html|njk)',
+    files     : './src/site/**/*.+(html|njk)',
+    templates : './src/site/templates/'
+  },
+  dest: {
+    path      : './',
+    files     : '*.html'
+  }
 };
 
 var config = {
@@ -120,6 +135,42 @@ gulp.task('build:css', ['clean:css'], function() {
     .pipe(filter('**/*.css'))
     .pipe(browserSync.stream())
     .pipe(size({showFiles: true}));
+});
+
+/**
+ * Datestamp for cache busting
+ */
+var getDate = function() {
+  var myDate = new Date();
+
+  var myYear    = myDate.getFullYear().toString();
+  var myMonth   = ('0' + (myDate.getMonth() + 1)).slice(-2);
+  var myDay     = ('0' + myDate.getDate()).slice(-2);
+  var mySeconds = myDate.getSeconds().toString();
+
+  var dateStamp = myYear + myMonth + myDay + mySeconds;
+
+  return dateStamp;
+};
+/**
+ * Task: render HTML template
+ */
+gulp.task( 'render:html', function() {
+  var date = getDate();
+  var cacheBust = lazypipe()
+    .pipe( replace, /(dist)(.*)(\.)(css|js)/g, '$1$2$3$4?' + date );
+
+  return gulp.src( html.src.pages )
+    .pipe( plumber({errorHandler: errorLog}) )
+    .pipe( htmlRender({
+      path: html.src.templates
+    }))
+    .pipe( gulpif( config.production, processhtml() ) )
+    .pipe( gulpif( config.production, cacheBust() ) )
+    .pipe( gulp.dest( html.dest.path ))
+    .pipe( size({
+      showFiles: true
+    }) );
 });
 
 /**

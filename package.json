@@ -24,6 +24,7 @@
     "gulp-nunjucks-render": "^2.2.1",
     "gulp-plumber": "^1.1.0",
     "gulp-processhtml": "^1.1.0",
+    "gulp-replace": "^0.6.1",
     "gulp-sass": "^3.1.0",
     "gulp-sequence": "^0.4.6",
     "gulp-size": "^2.1.0",
