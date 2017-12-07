@@ -67,10 +67,9 @@
 /* 0 */
 /***/ (function(module, exports) {
 
-(() => {
+(function () {
   console.log('it works');
 })();
-
 
 /***/ })
 /******/ ]);
