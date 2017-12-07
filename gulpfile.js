@@ -17,6 +17,8 @@ var babel        = require('gulp-babel');
 var eslint       = require('gulp-eslint');
 var concat       = require('gulp-concat');
 var uglify       = require('gulp-uglify');
+var webpack      = require('webpack-stream')
+var wp_config    = require('./webpack.config.js');
 
 // HTML template engine
 var htmlRender   = require('gulp-nunjucks-render');
@@ -56,7 +58,9 @@ const AUTOPREFIXER_BROWSERS = [
 
 // Script folders and files
 var script = {
-  user: {},
+  user: {
+    destPath: './dist/js/'
+  },
   vendor: {}
 };
 
@@ -109,6 +113,25 @@ gulp.task('clean:js', function () {
   return del([script.user.destFiles]);
 });
 gulp.task('clean:all', gulpSequence('clean:css', 'clean:js'));
+
+/**
+  * Task: `build:appJs`.
+  *
+  * Concatenate and uglify vendor and user scripts.
+  *
+  */
+gulp.task('build:appJs', ['clean:js'], () => {
+  return webpack(wp_config)
+    .pipe(gulp.dest(`${script.user.destPath}`));
+});
+
+/**
+  * Task: `build:vendorJs`.
+  *
+  * Concatenate and uglify vendor and user scripts.
+  *
+  */
+
 
 /**
  * Task: `styles`.
