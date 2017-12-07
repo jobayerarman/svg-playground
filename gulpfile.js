@@ -86,7 +86,6 @@ var config = {
   production: !!gutil.env.production, // Two exclamations turn undefined into a proper false.
   sourceMaps:  !gutil.env.production
 };
-const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
 
 /**
  * Notify Errors
@@ -129,10 +128,10 @@ gulp.task('build:appJs', ['clean:js'], () => {
   let options = {
     output: {
       publicPath: './dist/js/',
-      filename: isDevelopment ? '[name].js' : '[name]-[chunkhash:10].js'
+      filename: config.production ? '[name]-[chunkhash:10].js' : '[name].js'
     },
 
-    devtool: isDevelopment ? 'cheap-module-inline-source-map' : null,
+    devtool: config.production ? null : 'cheap-module-inline-source-map',
 
     module:  {
       loaders: [{
