@@ -17,7 +17,7 @@
     // enforce one true comma style
     "comma-style": ["error", "last"],
     // specify curly brace conventions for all control statements
-    "curly": ["error", "multi-line"],
+    "curly": ["error", "multi-or-nest"],
     // enforce newline at the end of file, with no multiple empty lines
     "eol-last": ["error", "always"],
     // enforce spacing between functions and their invocations

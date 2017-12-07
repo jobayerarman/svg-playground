@@ -139,7 +139,7 @@ gulp.task('build:appJs', ['clean:js'], () => {
 
     devtool: config.production ? null : 'cheap-module-inline-source-map',
 
-    module:  {
+    module: {
       loaders: [{
         test: /\.js$/,
         include: path.join(__dirname, 'src/js/user/'),
