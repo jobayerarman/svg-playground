@@ -27,6 +27,7 @@
     "gulp-if": "^2.0.2",
     "gulp-nunjucks-render": "^2.2.1",
     "gulp-plumber": "^1.1.0",
+    "gulp-print": "^2.0.1",
     "gulp-processhtml": "^1.1.0",
     "gulp-replace": "^0.6.1",
     "gulp-sass": "^3.1.0",

@@ -35,6 +35,7 @@ var lazypipe     = require('lazypipe');
 const named      = require('vinyl-named');
 var plumber      = require('gulp-plumber');
 const path       = require('path');
+const gprint     = require('gulp-print');
 var replace      = require('gulp-replace');
 var size         = require('gulp-size');
 
