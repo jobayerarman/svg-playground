@@ -38,6 +38,7 @@
     "gulp-util": "^3.0.8",
     "lazypipe": "^1.0.1",
     "vinyl-named": "^1.1.0",
+    "vinyl-paths": "^2.1.0",
     "webpack-stream": "^4.0.0"
   },
   "dependencies": {

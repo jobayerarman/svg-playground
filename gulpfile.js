@@ -38,6 +38,7 @@ const path       = require('path');
 const gprint     = require('gulp-print');
 var replace      = require('gulp-replace');
 var size         = require('gulp-size');
+const vinylPaths = require('vinyl-paths');
 
 // Style related
 var style = {
@@ -112,10 +113,14 @@ function errorLog(error) {
  * Cleans destination files
  */
 gulp.task('clean:css', function () {
-  return del([style.destFiles]);
+  return gulp.src([style.destFiles])
+    .pipe(gprint())
+    .pipe(vinylPaths(del));
 });
 gulp.task('clean:js', function () {
-  return del([script.user.destFiles]);
+  return gulp.src([script.user.destFiles])
+    .pipe(gprint())
+    .pipe(vinylPaths(del));
 });
 gulp.task('clean:all', gulpSequence('clean:css', 'clean:js'));
 
