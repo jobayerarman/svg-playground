@@ -59,7 +59,8 @@ const AUTOPREFIXER_BROWSERS = [
 // Script folders and files
 var script = {
   user: {
-    destPath: './dist/js/'
+    destPath: './dist/js/',
+    destFiles: './dist/js/*.+(js|map)',
   },
   vendor: {}
 };
