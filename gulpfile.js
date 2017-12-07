@@ -17,8 +17,8 @@ var babel        = require('gulp-babel');
 var eslint       = require('gulp-eslint');
 var concat       = require('gulp-concat');
 var uglify       = require('gulp-uglify');
-var webpack      = require('webpack-stream');
-var wp_config    = require('./webpack.config.js');
+var webpackStream = require('webpack-stream');
+var webpack       = webpackStream.webpack;
 
 // HTML template engine
 var htmlRender   = require('gulp-nunjucks-render');
@@ -32,7 +32,9 @@ var filter       = require('gulp-filter');
 var gulpif       = require('gulp-if');
 var gulpSequence = require('gulp-sequence');
 var lazypipe     = require('lazypipe');
+const named      = require('vinyl-named');
 var plumber      = require('gulp-plumber');
+const path       = require('path');
 var replace      = require('gulp-replace');
 var size         = require('gulp-size');
 
@@ -84,6 +86,7 @@ var config = {
   production: !!gutil.env.production, // Two exclamations turn undefined into a proper false.
   sourceMaps:  !gutil.env.production
 };
+const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
 
 /**
  * Notify Errors
@@ -123,8 +126,31 @@ gulp.task('clean:all', gulpSequence('clean:css', 'clean:js'));
   *
   */
 gulp.task('build:appJs', ['clean:js'], () => {
-  return webpack(wp_config)
-    .pipe(gulp.dest(`${script.user.destPath}`));
+  let options = {
+    output: {
+      publicPath: './dist/js/',
+      filename: isDevelopment ? '[name].js' : '[name]-[chunkhash:10].js'
+    },
+
+    devtool: isDevelopment ? 'cheap-module-inline-source-map' : null,
+
+    module:  {
+      loaders: [{
+        test: /\.js$/,
+        include: path.join(__dirname, 'src/js/user/'),
+        loader: 'babel-loader?presets[]=es2015'
+      }]
+    },
+    plugins: [
+      new webpack.NoEmitOnErrorsPlugin()
+    ]
+  };
+
+  return gulp.src(script.user.srcfiles)
+    .pipe(plumber({errorHandler: errorLog}))
+    .pipe(named())
+    .pipe(webpackStream(options))
+    .pipe(gulp.dest(script.user.destPath));
 });
 
 /**
